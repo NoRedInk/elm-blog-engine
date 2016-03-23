@@ -22,7 +22,7 @@ head =
         [ stylesheetLink "/style.css"
         , stylesheetLink "http://fonts.googleapis.com/css?family=Gentium+Book+Basic"
         , Html.node "script" [ attribute "src" "/Native/Highlight.js" ] [ ]
-        , stylesheetLink "default.css"
+        , stylesheetLink "/default.css"
         , a [] [
             img
                 [ src "/logo.png"
