@@ -6,3 +6,4 @@ _main.js
 elm.js
 node_modules/
 runner.sh
+_Renderer.elm
