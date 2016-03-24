@@ -3,6 +3,7 @@ module Helpers where
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.CssHelpers exposing (..)
+import Model exposing (..)
 
 body title content =
     article
@@ -35,10 +36,24 @@ head =
             ]
         ]
 
+authorView : Author -> Html
+authorView author =
+    div
+        [ class "content wrap" ]
+        [ img [ src author.img ] []
+        , br [] []
+        , strong [] [ text author.fullName ]
+        , br [] []
+        , a [ href ("https://twitter.com" ++ author.twitter)] [ text ("@" ++ author.twitter) ]
+        , br [] []
+        , text "Engineer at "
+        , a [ href "http://noredink.com" ] [ text "NoRedInk"]
+        ]
 
-createView title content =
+createView author title content =
     div
         []
         [ head
         , body title content
+        , authorView author
         ]

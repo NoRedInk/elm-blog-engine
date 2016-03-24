@@ -1,6 +1,7 @@
 module PubSub where
 
 import Helpers
+import Model exposing (..)
 import Markdown
 
 
@@ -469,19 +470,13 @@ Our example code finally functions as advertised:
 You can read through [the final code from this post](https://gist.github.com/JEG2/5517c64ae051092e40e7) if you're curious, but know that it's just a learning tool.  If you really need an Elixir pub/sub system, you should probably borrow [the one the Phoenix web framework uses](https://github.com/phoenixframework/phoenix_pubsub) or at least rework my code in terms of [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html), an Elixir tool would allow you to [use supervisors to restart your process in case of failure](http://elixir-lang.org/getting-started/mix-otp/supervisor-and-application.html).
 
 Having these powerful primitives to build on gives you some choices when writing Elixir applications.  In many other languages, the norm would be to add external dependencies to handle pub/sub, queuing, scheduled job execution, and more.  You can still take that path in Elixir too.  It works as it always has.  With Elixir though, you also have the choice of easily meeting your specific need using the tools included with the language.  It's always nice to have options.
-
-
-![](https://cloud.githubusercontent.com/assets/1094080/12563301/9d84e346-c377-11e5-8546-433af08218c0.png)
-**James Edward Gray II**
-[@JEG2](https://twitter.com/JEG2)
-Engineer at [NoRedInk](http://noredink.com)
 """
 
 title = "Pub/Sub in 30 Lines of Elixir"
 
 
 view =
-    Helpers.createView title content
+    Helpers.createView authors.jeg2 title content
 
 
 main = view
