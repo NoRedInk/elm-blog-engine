@@ -106,7 +106,9 @@ Elm.Native.Markdown.make = function(localRuntime) {
     }
 
     function fromFile(options, name){
-        return marked(loadFromFile(name), options);
+        var text = loadFromFile(name);
+
+        return toString(options, text);
     }
 
     function MarkdownWidget(options, rawMarkdown)
