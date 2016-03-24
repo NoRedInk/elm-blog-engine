@@ -6,9 +6,24 @@ Elm.Native.Markdown = Elm.Native.Markdown || {};
 
 if (typeof window === "undefined"){
     var hljs = require('highlight.js');
+    var loadFromFile = function(fileName, cb) {
+        fileName = "." + fileName;
+        var fs = require('fs');
+        var out = fs.readFileSync(fileName, cb);
+
+        return out.toString();
+    };
 } else {
 /*! highlight.js v9.2.0 | BSD3 License | git.io/hljslicense */
     var hljs = window.hljs;
+
+    var loadFromFile = function(fileName, cb){
+        var request = new XMLHttpRequest();
+        request.open('GET', fileName, false);
+        request.send(null);
+
+        return request.responseText;
+    }
 }
 
 // definition
@@ -90,6 +105,10 @@ Elm.Native.Markdown.make = function(localRuntime) {
         return marked(rawMarkdown, formatOptions(options));
     }
 
+    function fromFile(options, name){
+        return marked(loadFromFile(name), options);
+    }
+
     function MarkdownWidget(options, rawMarkdown)
     {
         this.options = options;
@@ -125,6 +144,7 @@ Elm.Native.Markdown.make = function(localRuntime) {
     return Elm.Native.Markdown.values = {
         toHtmlWith: F2(toHtmlWith),
         toString: F2(toString),
+        fromFile: F2(fromFile),
         toElementWith: F2(toElementWith)
     };
 };

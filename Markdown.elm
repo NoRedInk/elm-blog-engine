@@ -50,6 +50,14 @@ toString =
     Native.Markdown.toString
         { defaultOptions | defaultHighlighting = Just "elixir" }
 
+
+fromFile : String -> Html
+fromFile name =
+    Native.Markdown.fromFile
+        { defaultOptions | defaultHighlighting = Just "elixir" }
+        name
+        |> toDiv
+
 {-| Turn a markdown string into an HTML element, using the `defaultOptions`.
 
     intro : Element
