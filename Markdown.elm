@@ -1,4 +1,5 @@
-module Markdown where
+module Markdown (..) where
+
 {-| A library for markdown parsing. This is just an Elm API built on top of the
 [marked](https://github.com/chjj/marked) project which focuses on speed.
 
@@ -14,8 +15,9 @@ import Html exposing (Html)
 import Html.Attributes exposing (attribute, property)
 import Json.Encode exposing (string)
 import Native.Markdown
---import Native.Highlight
 
+
+--import Native.Highlight
 
 
 {-| Turn a markdown string into an HTML element, using the `defaultOptions`.
@@ -32,31 +34,34 @@ import Native.Markdown
 -}
 toHtml : String -> Html
 toHtml string =
-    Native.Markdown.toHtmlWith defaultOptions string
+  Native.Markdown.toHtmlWith defaultOptions string
+
 
 toDiv : String -> Html
 toDiv string =
-    let
-        inner =
-            toString string
-                |> Json.Encode.string
-    in
-        Html.div
-            [ property "innerHTML" inner]
-            []
+  let
+    inner =
+      toString string
+        |> Json.Encode.string
+  in
+    Html.div
+      [ property "innerHTML" inner ]
+      []
+
 
 toString : String -> String
 toString =
-    Native.Markdown.toString
-        { defaultOptions | defaultHighlighting = Just "elixir" }
+  Native.Markdown.toString
+    { defaultOptions | defaultHighlighting = Just "elixir" }
 
 
 fromFile : String -> Html
 fromFile name =
-    Native.Markdown.fromFile
-        { defaultOptions | defaultHighlighting = Just "elixir" }
-        name
-        |> toDiv
+  Native.Markdown.fromFile
+    { defaultOptions | defaultHighlighting = Just "elixir" }
+    name
+    |> toDiv
+
 
 {-| Turn a markdown string into an HTML element, using the `defaultOptions`.
 
@@ -72,7 +77,7 @@ fromFile name =
 -}
 toElement : String -> Element
 toElement string =
-    Native.Markdown.toElementWith defaultOptions string
+  Native.Markdown.toElementWith defaultOptions string
 
 
 {-| Some parser options so you can tweak things for your particular case.
@@ -105,11 +110,11 @@ toElement string =
 [dash]: http://en.wikipedia.org/wiki/Dash
 -}
 type alias Options =
-    { githubFlavored : Maybe { tables : Bool, breaks : Bool }
-    , defaultHighlighting : Maybe String
-    , sanitize : Bool
-    , smartypants : Bool
-    }
+  { githubFlavored : Maybe { tables : Bool, breaks : Bool }
+  , defaultHighlighting : Maybe String
+  , sanitize : Bool
+  , smartypants : Bool
+  }
 
 
 {-| The `Options` used by the `toElement` and `toHtml` functions.
@@ -122,11 +127,11 @@ type alias Options =
 -}
 defaultOptions : Options
 defaultOptions =
-    { githubFlavored = Just { tables = False, breaks = False }
-    , defaultHighlighting = Nothing
-    , sanitize = False
-    , smartypants = False
-    }
+  { githubFlavored = Just { tables = False, breaks = False }
+  , defaultHighlighting = Nothing
+  , sanitize = False
+  , smartypants = False
+  }
 
 
 {-| Maybe you want to parse user input into markdown. To stop them from adding
@@ -142,7 +147,7 @@ defaultOptions =
 -}
 toHtmlWith : Options -> String -> Html
 toHtmlWith =
-    Native.Markdown.toHtmlWith
+  Native.Markdown.toHtmlWith
 
 
 {-| Maybe you want to get prettier quotes with a simple syntax. You can use
@@ -158,4 +163,4 @@ modified parsing options.
 -}
 toElementWith : Options -> String -> Element
 toElementWith =
-    Native.Markdown.toElementWith
+  Native.Markdown.toElementWith
