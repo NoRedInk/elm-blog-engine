@@ -44,7 +44,7 @@ head =
 authorView : Author -> Html
 authorView author =
   div
-    [ class "content wrap" ]
+    [ class "author wrap" ]
     [ img [ src author.img ] []
     , br [] []
     , strong [] [ text author.fullName ]
