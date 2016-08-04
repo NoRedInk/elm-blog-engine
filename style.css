@@ -178,7 +178,11 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
         display: inline-block;
         margin-right: 1em;
       }
-      
+
+      .author {
+        margin-top: 2em;
+      }
+
       .tags {
         margin-top: 1em;
       }
